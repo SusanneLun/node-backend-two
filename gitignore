@@ -1,0 +1,4 @@
+
+\#Excluding password for MongoDB
+\#############
+config/.db.js
