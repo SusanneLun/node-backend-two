@@ -1,0 +1,24 @@
+
+
+$ echo debug.log >> .gitignore $ git rm --cached debug.log rm 'debug.log' $ git commit -m "Start ignoring debug.log"
+
+
+// const uri = "mongodb+srv://user_one:Forsta-09@cluster0.bdfs0.mongodb.net/test?retryWrites=true&w=majority";
+// const client = new MongoClient(uri, { useNewUrlParser: true });
+// client.connect(err => {
+//   const collection = client.db("test").collection("cluster0");
+//   // perform actions on the collection object
+//   client.close();
+// });
+//
+//
+//
+// MongoClient.connect('mongodb+srv://user_one:Forsta-09@cluster0.bdfs0.mongodb.net/test?retryWrites=true&w=majority', (err, database) => {
+//   if (err) return console.log(err)
+//   const database = database.db("test")
+// require('./app/routes')(app, database);
+// app.listen(port, () => {
+//     console.log('We are live on ' + port);
+//   });
+// })
+//
