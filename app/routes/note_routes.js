@@ -18,6 +18,18 @@ module.exports = function(app, client) {
     });
   });
 
+  app.delete('/notes/:id', (req, res) => {
+    const id = req.params.id;
+    const details = { '_id': new ObjectID(id) };
+    const db = client.db('star-wars')
+    db.collection('characters').deleteOne(details, (err, item) => {
+      if (err) {
+        res.send({'error':'An error has occurred'});
+      } else {
+        res.send('Name ' + id + ' deleted!');
+      }
+    });
+  });
 
   app.post('/notes', (req, res) => {
     const documents = [{ name: req.body.name, age: req.body.age }];
