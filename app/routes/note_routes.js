@@ -2,16 +2,29 @@
 
 
 
-
+var ObjectID = require('mongodb').ObjectID;
 
 module.exports = function(app, client) {
-  const collection =
-  app.post('/notes', (req, res) => {
-    const note = { text: req.body.body, title: req.body.title };
-    const db = client.db("firstie")
-    db.collection('Cluster0').insertMany(note, (err, result) => {
+  app.get('/notes/:id', (req, res) => {
+    const id = req.params.id;
+    const details = { '_id': new ObjectID(id) };
+    const db = client.db('star-wars')
+    db.collection('characters').findOne(details, (err, item) => {
       if (err) {
-        res.send({ 'error': 'An error has occurred' });
+        res.send({'error':'An error has occurred'});
+      } else {
+        res.send(item);
+      }
+    });
+  });
+
+
+  app.post('/notes', (req, res) => {
+    const documents = [{ name: req.body.name, age: req.body.age }];
+    const db = client.db('star-wars')
+    db.collection('characters').insertMany(documents, (err, result) => {
+      if (err) {
+        res.send({ 'error': 'An error has occurred in this case' });
       } else {
         res.send(result.ops[0]);
       }
