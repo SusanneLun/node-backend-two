@@ -31,6 +31,22 @@ module.exports = function(app, client) {
     });
   });
 
+  app.put('/notes/:id', (req, res) => {
+  const id = req.params.id;
+  const details = { '_id': new ObjectID(id) };
+  const documents = [{ $set: { name: req.body.name, age: req.body.age } }];
+  const db = client.db('star-wars')
+  db.collection('characters').updateOne(details, documents, (err, result) => {
+    if (err) {
+        res.send({'error':'An error has occurred'});
+    } else {
+        res.send(documents);
+    }
+  });
+});
+
+
+
   app.post('/notes', (req, res) => {
     const documents = [{ name: req.body.name, age: req.body.age }];
     const db = client.db('star-wars')
