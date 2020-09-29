@@ -45,8 +45,6 @@ module.exports = function(app, client) {
   });
 });
 
-
-
   app.post('/notes', (req, res) => {
     const documents = [{ name: req.body.name, age: req.body.age }];
     const db = client.db('star-wars')
